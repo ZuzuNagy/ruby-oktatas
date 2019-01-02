@@ -1,0 +1,61 @@
+XML:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<node value="1">
+  <node value="2">
+    <node value="4"/>
+  </node>
+  <node value="3">
+    <node value="5"/>
+    <node value="6">
+      <node value="7"/>
+    </node>
+  </node>
+</node>
+
+I. Készíts egy olyan feldolgozót, ami a kapott xml-ből a megadott adatszerkezetet állítja elő.
+
+Adatszerkezet:
+
+hash = { :value => 1, :children => [
+         { :value => 2, :children => [
+           { :value => 4, :children => [] } ] },
+         { :value => 3, :children => [
+           { :value => 5, :children => [] },
+           { :value => 6, :children => [
+             { :value => 7, :children => [] } ] } ] } ] }
+
+II. Készítsd el a következő két metódust:
+a) Kódrészlet:         values_a(hash)
+   Visszatérési érték: [ 1, 2, 4, 3, 5, 6, 7 ]
+b) Kódrészlet:         values_b(hash)
+   Visszatérési érték: [ 4, 2, 5, 7, 6, 3, 1 ]
+
+III. Készíts egy olyan feldolgozót, ami a kapott xml-ből az I. feladatban elvárt adatszerkezethez hasonló adatszerkezetet állít elő.
+Ebben az adaszerkezetben azonban a Hash példányok helyett Node1 példányoknak kell szerepelniük. Ehhez el kell készítened a Node1 nevű
+osztályt. A Node1 osztály esetében nincs szükség adatbázisra.
+
+IV. Készítsd el a Node1#as_tree metódust. A metódusnak meg kell felelnie a következő követelménynek:
+Kódrészlet: puts node.as_tree
+Szöveg a standard outputon:
+->[1]
+      ->[2]
+            ->[4]
+      ->[3]
+            ->[5]
+            ->[6]
+                  ->[7]
+
+V. Készíts egy új XML-t a fenti alapján, amit ha feldolgozol, már adatbázisban is le tudsz tárolni (legyen például id-ja az egyes node-oknak).
+Készítsd el a Node2 osztályt. Adatbázisként fájlt használj, az adatokat JSON formátumban tárold le.
+(Javaslat: kapcsolatként egy csúcs esetében csak a szülő csúcsának azonosítóját tárold le, a gyerek csúcsok azonosítóit ne)
+
+VI. Valósítsd meg a következő metódusokat:
+a) Node2#descendants          # A csúcs összes leszármazottját tartalmazó tömbbel tér vissza. (pl.: a 3 értékű csúcs leszármazottai az 5, 6, 7 értékű csúcsok)
+b) Node2#self_and_descendants # A csúcsot és a csúcs összes leszármazottját tartalmazó tömbbel tér vissza.
+c) Node2#ancestors            # A csúcs összes felmenőjét tartalmazó tömbbel tér vissza. (pl.: a 4 értékű csúcs felmenői az 1, 2 értékű csúcsok)
+d) Node2#self_and_ancestors   # A csúcsot és a csúcs összes felmenőját tartalmazó tömbbel tér vissza.
+e) Node2#siblings             # A csúcs testvéreit tartalmazó tömbbel tér vissza. (pl.: a 2 értésű csúcs testvére a 3 értékű csúcs)
+f) Node2#self_and_siblings    # A csúcsot és a csúcs testvéreit tartalmazó tömbbel tér vissza.
+
+VII. Készítsd el a Node3 osztályt úgy, hogy az a Node2 osztály nested set-té való átalakítása legyen.

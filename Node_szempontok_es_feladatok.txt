@@ -1,0 +1,62 @@
+Elvárt könyvtárszerkezet:
++-- tree
++---- Gemfile
++---- Gemfile.lock
++---- .ruby-version
++---- .ruby-gemset
++---- app
++------ main.rb
++------ models
++-------- node1.rb
++-------- node2.rb
++-------- node3.rb
++------ parsers
++-------- tree_parser_for_hash.rb
++-------- tree_parser_for_node1.rb
++-------- tree_parser_for_node2.rb
++-------- tree_parser_for_node3.rb
++---- source
++------ tree1.xml
++------ tree2.xml
++---- database
++------ json
++------ yaml
++------ xml
+
+Használathoz szükséges osztály/metódus:
+* File
+* require
+* autoload
+
+Ismerkedés fájl formátumokkal:
+* JSON
+* YAML
+* XML
+
+Megvalósítandó metódusok:
+* NodeX.build(attributes={})
+* NodeX.create(attributes={})
+* NodeX.all
+* NodeX.find_all_by(conditions={})
+* NodeX.find_by(conditions={})
+* NodeX.find(id)
+* NodeX#set(attributes={})
+* NodeX#save
+* NodeX#update(attributes={})
+* NodeX#destroy
+* kapcsolatokat leíró metódusok:
+> * NodeX#parent
+> * NodeX#children
+
+Database osztály megvalósítása:
+* formátum konfigurálhatóság
+* kezelt formátumok:
+> * JSON
+> * YAML
+> * XML
+
+Matrix osztály megvalósítása négyféle reprezentációval:
+* sorfolytonos
+* oszlopfolytonos
+* sorok tömbje
+* oszlopok tömbje
