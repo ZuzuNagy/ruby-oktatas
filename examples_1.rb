@@ -85,3 +85,27 @@ hash = { :nem_szam => :nem_szam, [ 1, 2, 3 ] => :tomb, "123" => :szazhuszonharom
 # 1. select
 # 2. inject
 # 3. tetszőleges
+
+def reject_hash_key hash
+  hash.reject do |key, value|
+    key.is_a?(String) && key.to_i > 0
+  end
+end
+
+def select_hash_key hash
+  hash.select do |key, value|
+    !(key.is_a?(String) && key.to_i > 0)
+  end
+end
+
+def inject_hash_key hash
+  hash.inject({}) do |new_hash, (key, value)|
+    if !(key.is_a?(String) && key.to_i > 0)
+      new_hash[key] = value
+    end
+    new_hash
+  end
+end
+p reject_hash_key(hash)
+p select_hash_key(hash)
+p inject_hash_key(hash)
