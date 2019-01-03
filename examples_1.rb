@@ -34,10 +34,8 @@ array = [ 1, 2, 3, 4, 567, 123, 356, 654647 ]
 # 2. tetszőleges
 
 def create_hash arr
-  arr.inject({}) do |hash, num|
-    hash["paros"] ||= []
-    hash["paratlan"] ||= []
-    num.even? ? hash["paros"] << num : hash["paratlan"] << num
+  arr.inject({"paros"=>[],"paratlan"=>[]}) do |hash, num|
+    hash[num.even? ? "paros" : "paratlan"] << num
     hash
   end
 end
@@ -49,7 +47,7 @@ array = [ 1, 2, 3, 4, 567, 123, 356, 654647 ]
 # 1. map
 # 2. tetszőleges
 
-#array.map do { |num| num.to_s }
+p array.map { |num| num.to_s }
 
 # IV. Készíts egy olyan asszociatív tömböt (Hash-t), aminek kulcsai a megadott tömbben szereplő számok String változatai, értékei pedig a tömbben szereplő számok.
 # Pl.: [ 1, 2, 3 ] => { "1" => 1, "2" => 2, "3" => 3 }
