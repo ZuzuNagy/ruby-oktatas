@@ -55,6 +55,14 @@ array = [ 1, 2, 3, 4, 567, 123, 356, 654647 ]
 # 1. inject
 # 2. tetszőleges
 
+def create_hash_2 arr
+  arr.inject({}) do |hash, num|
+    hash[num.to_s] = num
+    hash
+  end
+end
+
+p create_hash_2(array)
 
 # V. Számítsd ki a tömbben található számok összegét.
 array = [ 1, 2, 3, 4, 567, 123, 356, 654647 ]
