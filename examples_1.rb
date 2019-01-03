@@ -69,6 +69,15 @@ array = [ 1, 2, 3, 4, 567, 123, 356, 654647 ]
 # 1. inject
 # 2. tetszőleges
 
+def sum_number arr
+  arr.inject(0) do |sum, num|
+    sum += num
+  end
+end
+
+p sum_number(array)
+
+p array.sum
 
 # VI. Válaszd ki azokata a kulcs-érték párokat, amiknél a kulcs nem egy nullánál nagyobb szám String megfelelője.
 hash = { :nem_szam => :nem_szam, [ 1, 2, 3 ] => :tomb, "123" => :szazhuszonharom_string, 123 => :szazhuszonharom_szam, "0" => :nulla_string }
