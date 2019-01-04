@@ -2,8 +2,28 @@ p 'I. ' + '-' * 10
 # I. Készítsd el a my_each_with_index metódust tömbre. Ugyanúgy kell működnie, mint az each_with_index-nek.
 
 class Array
+#  def my_each_with_index &block
+#    index = 0
+#    each do |elem|
+#      block.call(elem, index)
+#      index += 1
+#    end
+#  end
+
+#  def my_each_with_index &block
+#    inject(0) do |index, elem|
+#      block.call(elem, index)
+#      index += 1
+#    end
+#  end
+
   def my_each_with_index &block
+    size.times do |index|
+      elem = self[index]
+      block.call(elem, index)
+    end
   end
+
 end
 
 array = [ 1, 2, 3 ]
@@ -21,8 +41,22 @@ p 'II. ' + '-' * 10
 # II. Készítsd el a my_map metódust tömbre. Ugyanúgy kell működnie, mint a map-nek.
 
 class Array
+
+#  def my_map &block
+#    new_arr = []
+#    each do |elem|
+#      new_arr << block.call(elem)
+#    end
+#    new_arr
+#  end
+
   def my_map &block
+    inject([]) do |new_arr, elem|
+      new_arr << block.call(elem)
+      new_arr
+    end
   end
+
 end
 
 array = [ 1, 2, 3 ]
@@ -42,7 +76,26 @@ p 'III. ' + '-' * 10
 
 class Array
   def my_inject argument=nil, &block
-   end
+    unless argument.nil?
+      each do |elem|
+        argument = block.call(argument, elem)
+      end
+    else
+      argument = first
+      self[1..-1].each do |elem|
+        argument = block.call(argument, elem)
+      end
+    end
+    argument
+  end
+
+  def my_inject argument=nil, &block
+    size.times do |n|
+      argument = argument.nil? && n == 0 ? first : block.call(argument, self[n])
+    end
+    argument
+  end
+
 end
 
 array = [ 1, 2, 3 ]
@@ -61,7 +114,27 @@ p 'IV. ' + '-' * 10
 
 class Array
   def my_select &block
+    new_arr = []
+    each do |elem|
+      new_arr << elem if block.call(elem)
+    end
+    new_arr
   end
+
+  def my_select &block
+    inject([]) do |new_arr, elem|
+      block.call(elem) ? new_arr + [elem] : new_arr
+     # new_arr << elem if block.call(elem)
+     # new_arr
+    end
+  end
+
+  def my_select &block
+    each_with_object([]) do |el, arr|
+      arr << el if block.call(el)
+    end
+  end
+
 end
 
 array = [ 1, 2, 3 ]
