@@ -2,20 +2,20 @@ p 'I. ' + '-' * 10
 # I. Készítsd el a my_each_with_index metódust tömbre. Ugyanúgy kell működnie, mint az each_with_index-nek.
 
 class Array
-#  def my_each_with_index &block
-#    index = 0
-#    each do |elem|
-#      block.call(elem, index)
-#      index += 1
-#    end
-#  end
+  def my_each_with_index &block
+    index = 0
+    each do |elem|
+      block.call(elem, index)
+      index += 1
+    end
+  end
 
-#  def my_each_with_index &block
-#    inject(0) do |index, elem|
-#      block.call(elem, index)
-#      index += 1
-#    end
-#  end
+  def my_each_with_index &block
+    inject(0) do |index, elem|
+      block.call(elem, index)
+      index += 1
+    end
+  end
 
   def my_each_with_index &block
     size.times do |index|
@@ -42,13 +42,13 @@ p 'II. ' + '-' * 10
 
 class Array
 
-#  def my_map &block
-#    new_arr = []
-#    each do |elem|
-#      new_arr << block.call(elem)
-#    end
-#    new_arr
-#  end
+  def my_map &block
+    new_arr = []
+    each do |elem|
+      new_arr << block.call(elem)
+    end
+    new_arr
+  end
 
   def my_map &block
     inject([]) do |new_arr, elem|
